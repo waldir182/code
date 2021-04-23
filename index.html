@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Practoce javascript</title>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="theme-color" content="#1a1b1e" />
+
+		<meta name="description" content="Bienebenido :)" />
+		<meta name="MobileOptimized" content="width" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
+		<link rel="shortcut icon" type="image/png" href="./img/pwa-icon.png" />
+		<link rel="apple-touch-icon" href="./ProgramadorFitness.png" />
+		<link rel="apple-touch-startup-image" href="./ProgramadorFitness.png" />
+		<link rel="manifest" href="./manifest.json" />
+
+		<!-- <link rel="stylesheet" href="./consola/archivo1.css"> -->
+		<link rel="stylesheet" href="css/estilos.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="css/all.min.css" type="text/css" />
+		z
+	</head>
+
+	<body>
+		<iframe
+			sandbox="allow-forms allow-modals allow-same-origin allow-scripts"
+			class="output-code"
+			id="code-server"
+			src="http://localhost:8090"
+			marginwidth="0"
+			marginheight="0"
+			name="ventana_iframe"
+			scrolling="no"
+			frameborder="0"
+			width="100%"
+		>
+		</iframe>
+		<div class="close-zone"></div>
+		<div class="output-zone">
+			<div class="header">
+				<div class="title-active">Welcome to section More</div>
+				<div class="menu-container">
+					<div class="menu">
+						<button id="browser">
+							<i class="icon" data-feather="chrome"></i>
+						</button>
+						<button id="play-live">
+							<i class="icon" data-feather="code"></i>
+						</button>
+						<!-- <span><i class="fas fa-circle"></i> Preview</span> -->
+						<button id="reload-cs">
+							<i class="icon" data-feather="sidebar"></i>
+						</button>
+						<button id="reloader">
+							<i class="icon" data-feather="refresh-cw"></i>
+						</button>
+						<button id="external-link">
+							<i class="icon" data-feather="external-link"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="tabs">
+				<button type="button" class="tab-add">+</button>
+			</div>
+			<div class="iframe-container">
+				<!-- CONTENEDOR IFRAMES -->
+				<div class="iframe-capa"></div>
+				<button id="toggle-outzone">||</button>
+			</div>
+			<div class="footer">
+				<div>
+					<button id="btn-theme"><i class="fas fa-adjust"></i></button>
+					<input id="outLink" type="text" value="http://localhost:8000" />
+				</div>
+				<div>
+					<button><i class="fas fa-code-branch"></i></button>
+				</div>
+			</div>
+		</div>
+		<script src="https://unpkg.com/feather-icons"></script>
+		<script src="new.js" type="module"></script>
+		<script src="main.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./script.js"></script>
+		<script src="./js/Functions.js"></script>
+		<script>
+			feather.replace();
+			window.addEventListener("message", (e) => {
+				if (e.origin == "http://localhost:8080") {
+					let tab = document.querySelector(".tab-btn.active");
+					tab.querySelector("i").textContent = e.data;
+					document.getElementById("outLink").value = e.data;
+				}
+			});
+		</script>
+	</body>
+</html>

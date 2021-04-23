@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="consola/archivo1.css" />
+		<script src="consola/archivo2.js"></script>
+		<script src="consola/archivo3.js"></script>
+		<style>
+			@font-face {
+				src: "SFPro";
+				font-family: url("./SFMono-Regular.otf");
+				font-style: normal;
+			}
+			body {
+				height: 100%;
+				width: 100%;
+				position: fixed;
+				display: grid;
+				place-items: center;
+				background-color: #383C3D;
+				overflow-y: auto;
+			}
+			main {
+				width: 80%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+			main a {
+				background-color: rgba(64, 64, 191, 0.6);
+				color: rgba(255, 255, 255, 0.7);
+				text-decoration: none;
+				padding: 20px;
+				border-radius: 10px;
+				display: inline-block;
+				margin: 10px 0;
+				font-family: "SFMono";
+				max-width: 300px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+	<body>
+		<main></main>
+
+		<script>
+			let main = document.querySelector("main");
+			let historial = localStorage.getItem("history-tabs");
+			if (historial) {
+				JSON.parse(historial).forEach((link) => {
+					let a = document.createElement("a");
+					a.classList.add('link');
+					a.href = link;
+					a.textContent = link;
+					main.insertAdjacentElement("afterbegin", a);
+				});
+			}
+
+			const iframe = document.querySelector('iframe');
+			document.addEventListener('click', e => {
+				if(e.target.matches('.link')) {
+					window.top.postMessage(e.target.href, 'http://localhost:8080');
+				}
+			})
+		</script>
+	</body>
+</html>

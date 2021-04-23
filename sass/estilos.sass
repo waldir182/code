@@ -1,0 +1,398 @@
+@font-face
+   font-family: ("SFMono",)
+   src: url("../sfprotext.ttf"), url("../SFMono-Regular.otf")
+   font-style: normal
+
+$color-text: rgba(255, 255, 255, 0.7)
+$color-bg: #202430
+$border-light: hsl(240, 0%, 70%)
+$border-dark: hsla(240, 0%, 0%, 0%)
+
+*
+   padding: 0
+   margin: 0
+   box-sizing: border-box
+
+body
+   background: #222
+
+body::after
+   content: ""
+   background: transparent
+   width: 1px
+   height: 100vh
+   z-index: 10000
+   position: absolute
+   top: 0
+   right: 0
+
+// INFO: ZONA DE LIVE SERVER ...................
+.output-zone
+   position: fixed
+   top: 0
+   height: 100vh
+   width: 460px
+   right: -460px
+   z-index: 10
+   background: #2E3233
+   border: 1px solid rgba(0, 0, 0, 0.5)
+   box-sizing: border-box
+   display: grid
+   grid-template-rows: 80px 40px 1fr 40px
+   transition: all 0.01s
+   backdrop-filter: blur(5px)
+
+   &.active
+      right: 0
+
+   & *
+      font-family: "SFMono"
+
+   .header
+      display: grid
+      grid-template-columns: 1fr
+      grid-template-rows: 25px 1fr
+      border-bottom: 0px solid rgba(0, 0, 0, 0)
+      box-sizing: border-box
+      padding: 0 0px
+      position: relative
+      .title-active
+         width: 100%
+         display: grid
+         place-items: center
+         color: #FCFFFF
+         background: #242424
+      .menu-container
+         width: 100%
+         display: flex
+         padding: 0 4px
+         justify-content: space-between
+         border-bottom: 1.5px solid #131718
+         border-top: 1.5px solid #131718
+         background: linear-gradient(to top, #2E3233,#2E3233, #3C4041)
+      .menu
+         height: 100%
+         display: flex
+         align-items: center
+         
+         button
+            background: #636768
+            border: 0
+            border-top: 1px solid rgba(255,255,255,0.1)
+            color: #FCFFFF
+            font-size: 15px
+            outline: none
+            width: 40px
+            height: 40px
+            transition: 0.2s
+            border-radius: 7px
+            margin-right: 3px
+            box-shadow: 0 0 3px rgba(0,0,0,0.2)
+            .icon 
+               width: 20px
+               position: relative
+               top: 1px
+
+            &:active
+               transform: scale(1.2)
+
+         i.fas.fa-circle
+            color: #0d4
+            font-size: 13px
+
+         span
+            font-size: 17px
+            font-weight: bold
+
+            i
+               font-size: 15px
+
+   .iframe-container
+      width: 100%
+      height: 100%
+      // box-shadow: 2px 0 0 1px $border-dark
+      background: #383C3D
+
+      .iframe-capa
+         width: 100%
+         height: 100%
+         border: 10px solid transparent
+         position: relative
+         background: inherit
+
+         iframe
+            background: #383C3D
+            height: 100%
+            width: 100%
+            position: absolute
+            top: 0
+            left: 0
+            border: 0
+
+         iframe.active
+            z-index: 10
+
+   .footer
+      background: rgba(255, 255, 255, 0.1)
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding: 0 10px
+
+      div
+         display: flex
+         align-items: center
+         height: 100%
+
+         button
+            background: none
+            height: 100%
+            width: 40px
+            display: drid
+            place-items: center
+            color: rgba(255, 255, 255, 0.2)
+            font-size: 25px
+            border: 0
+            outline: none
+
+         input
+            background: none
+            color: rgba(255, 255, 255, 0.6)
+            height: 100%
+            font-size: 18px
+            border: 0
+            padding: 0 10px
+            outline: none
+
+         span
+            color: rgba(255, 255, 255, 0.6)
+
+// INFO: zona para ocultar ....................
+.close-zone
+   $filtro: 0px
+
+   background: url("./../img/close.jpeg") rgba(0, 0, 0, 0.1)
+   background-repeat: no-repeat
+   background-size: cover
+   position: fixed
+   height: 100vh
+   width: 100%
+   top: 0
+   right: -100%
+   backdrop-filter: blur($filtro)
+   -ms-backdrop-filter: blur($filtro)
+   -MS-backdrop-filter: blur($filtro)
+   -mz-backdrop-filter: blur($filtro)
+   -o-backdrop-filter: blur($filtro)
+   -webkit-backdrop-filter: blur($filtro)
+   transition: all 0.01s
+   opacity: 0
+
+   &.active
+      right: 0
+      opacity: 0.07
+
+// INFO: TOGGLE BOTON  ........................
+#toggle-outzone
+   height: 40px
+   width: 30px
+   background-color: rgba(255, 255, 255, 0.05)
+   display: grid
+   place-items: center
+   position: absolute
+   left: -30px
+   top: 470px
+   border: 0
+   border-radius: 50% 0 0 50%
+   outline: none
+   font-size: 20px
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2)
+   z-index: 1000000
+
+   &.hide
+      display: none
+      left: 0
+      background: rgba(0, 0, 0, 0.2)
+
+// INFO: IFRAME DE EDITOR  ......................
+.output-code
+   height: 100vh
+   position: fixed
+   top: 0
+   left: 0
+
+// INFO: PESTAÑAS  ......................
+.tabs
+   height: 40px
+   width: 100%
+   display: flex
+   align-items: center
+   color: rgba(255, 255, 255, 0.6)
+   padding-top: 5px 
+
+   // border-top: 1px solid rgba(255, 255, 255, 0.2)
+   // border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+   overflow-x: scroll
+   padding-right: 20px
+
+   & *
+      user-select: none
+
+   button
+      width: 150px
+      min-width: 150px
+      height: 100%
+      border: 0
+      display: flex
+      align-items: center
+      justify-content: space-between
+      padding: 0 5px
+      background: none
+      position: relative
+      outline: none
+      color: rgba(255, 255, 255, 0.4)
+      z-index: 1000000 !important
+
+      i
+         max-width: 80%
+         overflow: hidden
+         font-size: 16px
+         font-style: normal
+         font-weight: 400
+         text-overflow: ellipsis
+         word-wrap: nowrap
+
+      span
+         display: flex
+         height: 20px
+         width: 20px
+         align-items: center
+         justify-content: center
+         border-radius: 5px
+         // text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3)
+         font-size: 20px
+         color: rgba(255,255,255,0.4)
+         background: transparent
+         z-index: 1000
+   
+   .tab-btn.active
+      border-radius: 10px 10px 0 0
+      background: hsla(0, 0, 100%, 5%)
+      color: rgba(255, 255, 255, 0.8)
+      border-bottom: 0
+      span
+         color: #fff
+         background: #307BF0
+
+      &::before, &::after
+         content: ""
+         border: 10px solid transparent
+         position: absolute
+         z-index: 100
+         bottom: 1px
+
+      &::before
+         right: calc(100% + 1px)
+         border-radius: 0 0 10px 0
+         box-shadow: 1px 1px 0 $border-dark, 10px 10px 0 #383C3D
+
+      &::after
+         left: calc(100% + 1px)
+         border-radius: 0 0 0 10px
+         box-shadow: (-1px) 1px 0 $border-dark, -10px 10px 0 #383C3D
+
+
+         // text-overflow: clip
+         //width: 100%
+   .tab-btn.active:nth-child(1)
+      border-radius: 0 10px 0 0
+   .tab-add
+      height: 30px
+      width: 30px
+      min-width: 30px
+      color: rgba(255, 255, 255, 0.3)
+      border: 0
+      margin: 0 5px
+      outline: none
+      background: transparent
+      font-size: 25px
+
+// INFO: MODO LIGHT
+.output-zone.light
+   background: #D8DBE2
+
+   .header
+      z-index: 1000
+
+      .menu
+         background: hsl(240, 100%, 100%)
+         border: 1px solid rgba(255, 255, 255, 0.4)
+
+         button, span
+            color: rgba(0, 0, 0, 0.2)
+
+   .iframe-container
+      box-shadow: 2px 0px 0 1px $border-light
+      padding: 0 0
+
+   .iframe-capa
+      border: 10px solid #fff
+      background: #fff
+
+      iframe
+         background: inherit
+
+   .footer
+      background: rgba(0, 0, 0, 0.05)
+
+      button
+         color: rgba(0, 0, 0, 0.2)
+
+      input, span
+         color: rgba(0, 0, 0, 0.4)
+
+   .tabs
+      box-shadow: none
+
+      button
+         box-shadow: none inset
+         color: rgba(0, 0, 0, 0.4)
+         z-index: 100000
+
+         span
+            box-shadow: none
+
+      .btn-add
+         color: #282F41
+
+      .tab-btn.active
+         background: #fff
+         border-radius: 10px 10px 0 0
+         border: 1px solid $border-light
+         border-bottom: 0
+
+         &::before, &::after
+            content: ""
+            border: 10px solid transparent
+            position: absolute
+            z-index: 10000
+            bottom: 1px
+
+         &::before
+            right: calc(100% + 1px)
+            border-radius: 0 0 10px 0
+            box-shadow: 1px 1px 0 $border-light, 10px 10px 0 #fff
+
+         &::after
+            left: calc(100% + 1px)
+            border-radius: 0 0 0 10px
+            box-shadow: (-1px) 1px 0 $border-light, -10px 10px 0 #fff
+
+         span
+            color: hsl(0, 50%, 70%)
+
+         i
+            color: #282F41
+
+      .tab-add
+         border-right: 0

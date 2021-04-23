@@ -1,0 +1,229 @@
+:root {
+	--filtro: 5px;
+}
+* {
+	/* user-select: none; */
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 90%;
+	width: 100%;
+	display: grid;
+	position: fixed;
+	top: 0;
+	place-items: center;
+}
+
+/* Out zone */
+#toggle-outzone {
+	height: 40px;
+	width: 30px;
+	background-color: rgba(255, 255, 255, 0.2);
+	display: grid;
+	place-items: center;
+	position: absolute;
+	left: -30px;
+	top: calc(50% - 20px);
+	border: 0;
+	border-radius: 50% 0 0 50%;
+	outline: none;
+	font-size: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+#toggle-outzone.hide {
+	display: none;
+	left: 0;
+	transform: rotate(180deg);
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.output-zone {
+	position: fixed;
+	top: 0;
+	right: calc(-100% + 45px);
+	height: 100vh;
+	width: calc(100% - 45px);
+	z-index: 10;
+	background: #3c3835;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	box-sizing: border-box;
+}
+
+.output-zone.active {
+	right: 0;
+}
+
+.close-zone {
+	background-color: rgba(0, 0, 0, 0.3);
+	position: fixed;
+	height: 100vh;
+	width: 100%;
+	top: 0;
+	right: -100%;
+	backdrop-filter: blur(var(--filtro));
+	-ms-backdrop-filter: blur(var(--filtro));
+	-ms-backdrop-filter: blur(var(--filtro));
+	-mz-backdrop-filter: blur(var(--filtro));
+	-o-backdrop-filter: blur(var(--filtro));
+	-webkit-backdrop-filter: blur(var(--filtro));
+}
+.close-zone.active {
+	right: 0;
+}
+.iframe-container {
+	padding: 20px;
+	height: 100%;
+	width: 100%;
+}
+.iframe-capa {
+	height: 100%;
+	height: 90%;
+	border: 2px solid white;
+	position: relative;
+}
+.iframe-capa iframe {
+	/* transform: scale(0.5); */
+	height: 100%;
+	width: 100%;
+	background: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.iframe.active {
+	z-index: 10;
+}
+.output-zone .header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 0px solid rgba(0, 0, 0, 0);
+	height: 6vmax;
+	box-sizing: border-box;
+	padding: 0 15px;
+	position: relative;
+}
+.output-zone .header div {
+	display: flex;
+}
+.output-zone .header button {
+	width: 4vmax;
+	height: 4vmax;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 0;
+	border-radius: 7px;
+	background-color: rgba(255, 255, 255, 0.3);
+	color: rgba(255, 255, 255, 0.7);
+	outline: none;
+	margin-right: 5px;
+	font-size: 2vmax;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+	border-top: 1.2px solid rgba(255, 255, 255, 0.2);
+	box-sizing: border-box;
+}
+.output-zone .header button:hover {
+	filter: brightness(1.4);
+}
+.output-zone .header input {
+	height: 4vmax;
+	padding: 0 10px;
+	border-radius: 7px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+	border: 0;
+	background: rgba(255, 255, 255, 0.3);
+	outline: none;
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 15px;
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	box-sizing: border-box;
+}
+/* code */
+.output-code {
+	height: 100vh;
+}
+
+/*-------- Estilos para tamaño pequeño -----------*/
+.output-zone.small {
+	height: 60vh;
+	width: 40vh;
+}
+.output-zone.small .iframe-capa {
+	height: 100%;
+}
+.output-zone.small .header {
+	height: 30px;
+}
+.output-zone.small .header button,
+.output-zone.small .header input {
+	width: 20px;
+	height: 20px;
+	font-size: 10px;
+}
+.output-zone.small .header input {
+	width: auto;
+}
+.output-zone.small .iframe-container {
+	padding: 0;
+}
+.output-zone.small .header {
+	padding: 0 0;
+}
+
+/*------- Estilos de tabs --------*/
+.tabs {
+	height: 40px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	color: rgba(255, 255, 255, 0.6);
+	border-top: 1px solid rgba(0, 0, 0, 0.5);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+	overflow-x: scroll;
+}
+.tabs .tab-btn {
+	width: 150px;
+	min-width: 150px;
+	height: 100%;
+	border: 0;
+	background-color: rgba(255, 255, 255, 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 5px;
+	position: relative;
+	outline: none;
+	color: inherit;
+	border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+.tabs .tab-btn.active {
+	background: rgba(0, 0, 0, 0.2);
+}
+.tabs .tab-btn span {
+	display: inline-flex;
+	height: 20px;
+	width: 20px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 3px;
+	background-color: #d40;
+}
+.tabs .tab-btn i {
+	max-width: 80%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.tabs .tab-add {
+	height: 30px;
+	width: 30px;
+	min-width: 30px;
+	background-color: rgba(255, 255, 255, 0.05);
+	color: inherit;
+	border: 0;
+	margin: 0 5px;
+}
