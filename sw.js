@@ -3,7 +3,6 @@ const CACHE_NAME = "v1_cache_programador_editor",
 	urlsToCache = [
 		"./",
 		"./script.js",
-		"./main.js",
 		"./img/ProgramadorFitness.png",
 		"./img/pwa-icon.png",
 		"./img/close.jpeg",
