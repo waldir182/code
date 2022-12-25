@@ -2,25 +2,13 @@
 const CACHE_NAME = "v1_cache_programador_editor",
 	urlsToCache = [
 		"./",
-		"./css/estilos.css",
 		"./script.js",
 		"./main.js",
-		"./eruda/eruda.js",
-		"./eruda/eruda-code.js",
-		"./eruda/eruda-dom.js",
-		"./eruda/eruda.js.map",
-		"./eruda/package.json",
-		"./eruda/readme.md",
 		"./img/ProgramadorFitness.png",
 		"./img/pwa-icon.png",
 		"./img/close.jpeg",
 		"./img/favicon.png",
-		"./js/Tab.js",
-		"./js/Iframe.js",
-		"./new.js",
-		"./css/all.min.css",
-		"./webfonts/",
-      "https://unpkg.com/feather-icons"
+		"./new.js"
 	];
 
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos
