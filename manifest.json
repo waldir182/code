@@ -4,7 +4,7 @@
   "description": "Bienvenid@ a tu editor insano :)",
   "background_color": "#2B2B2B",
   "theme_color": "#5e03fc",
-  "display": "stanalone",
+  "display": "standalone",
   "start_url": "./?utm_source=web_app_manifest",
   "scope": "./",
   "lang": "es-MX",
