@@ -5,9 +5,7 @@ const CACHE_NAME = "v1_custom_iframe",
 		"./script.js",
 		"./img/ProgramadorFitness.png",
 		"./img/pwa-icon.png",
-		"./img/close.jpeg",
 		"./img/favicon.png",
-		"./new.js"
 	];
 
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos
