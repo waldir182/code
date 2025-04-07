@@ -2,7 +2,8 @@
 
 echo "Instalando mi herramienta..."
 # Aquí va tu lógica
-sudo apt update
-sudo apt install -y git
+apt update -y
+apt upgrade -y
+
 
 echo "Instalación completada."
