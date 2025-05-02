@@ -25,6 +25,7 @@ echo -e "${CYAN}[+] Instalando paquetes necesarios...${NC}"
 pkg install python git nano -y
 pkg install unrar -y
 pkg install python -y
+pkg install wget -y
 
 # echo -e "${CYAN}[+] Copiando carpeta /sdcard/bot_telegram.rar > ~/ ...${NC}"
 # cp /sdcard/bot_telegram.rar ~/
